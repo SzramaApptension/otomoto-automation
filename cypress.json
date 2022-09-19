@@ -1,5 +1,5 @@
 {
-    "baseUrl": "http://www.webdriveruniversity.com",
+    "baseUrl": "/",
     "chromeWebSecurity": false,
     "defaultCommandTimeout": 30000,
     "pageLoadTimeout": 45000,

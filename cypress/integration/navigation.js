@@ -4,7 +4,7 @@ let carsCount =0;
 
 describe('Navigation', () => {
   it('Should have same results', () => {      // selecting from drop down list
-    cy.visit('https://www.otomoto.pl');
+    cy.visit('/');
     cy.get('#onetrust-accept-btn-handler').click();
     cy.get('#filter_enum_body_type').click();
     cy.get(".ds-dropdown-list-item").contains("Coupe").click();
@@ -22,7 +22,7 @@ describe('Navigation', () => {
       cy.get('.e1l24m9v0').should('contain', carsCount.toString());
       cy.url().should('include', '/osobowe/audi').should('include', '10000');
     }).then(()=>{                             // selecting by typing
-      cy.visit('https://www.otomoto.pl');
+      cy.visit('/');
        cy.get('#filter_enum_body_type').type("Coupe").type('{enter}');
        cy.get('.ds-select-clear-icon').should('have.length', 1);
        cy.get('#filter_enum_make').type("Audi").type('{enter}');

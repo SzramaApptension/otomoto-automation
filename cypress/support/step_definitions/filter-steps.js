@@ -5,7 +5,7 @@ let number = 0;
 let price = 0;
 
 Given("I access otomoto page", () => {
-    cy.visit("https://www.otomoto.pl/");
+    cy.visit("//");
     cy.viewport(1920,1080);
     cy.get('#onetrust-accept-btn-handler').click();
 })

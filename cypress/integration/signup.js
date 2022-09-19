@@ -15,7 +15,7 @@ describe('Create account on Otomoto', () => {
   })
 
   beforeEach(() => {
-    cy.visit('https://www.otomoto.pl');
+    cy.visit('/');
     cy.viewport(1920, 1080);
     cy.get('#onetrust-accept-btn-handler').click();
   })
@@ -41,7 +41,6 @@ describe('Create account on Otomoto', () => {
     cy.get('[data-test="input-confirm-password"]').type(data.newPass);
     cy.get(':nth-child(4) > [data-test="change-password"]').click();
     cy.get('.om-confirm-inner > :nth-child(1)').should('contain', "zostało zmienione");
-    //cy.get('[data-test="link-account"]').trigger('mouseover')
     cy.get('[data-test="logout-button"]').click({force: true});
     cy.LoginFail(existingAccLogin, data.OtoPass);
     cy.LoginToOtomoto(existingAccLogin, data.newPass).then(() => {

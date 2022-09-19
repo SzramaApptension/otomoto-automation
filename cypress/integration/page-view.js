@@ -3,7 +3,7 @@
 
 describe('Validate if elements are visible on pagae', () => {  
     beforeEach(() => {
-        cy.visit('https://www.otomoto.pl');
+        cy.visit('/');
         cy.get('#onetrust-accept-btn-handler').click();
     })
 

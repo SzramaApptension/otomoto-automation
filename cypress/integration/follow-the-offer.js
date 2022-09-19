@@ -6,7 +6,7 @@ describe('Validate if followed offers appears in dedicated page', () => {
     let carName ='';
 
     beforeEach(() => {
-        cy.visit('https://www.otomoto.pl');
+        cy.visit('/');
         cy.viewport(1920,1080);
         cy.get('#onetrust-accept-btn-handler').click();
     })

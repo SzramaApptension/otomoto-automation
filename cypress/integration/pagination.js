@@ -5,7 +5,7 @@ let carsCount =0;
 describe('Pagination', () => {
   it('Pages should have presented same number of cars', () => {      // selecting from drop down list
     cy.viewport(1920,1080);
-    cy.visit('https://www.otomoto.pl');
+    cy.visit('/');
     cy.get('#onetrust-accept-btn-handler').click();
     cy.get('#filter_enum_body_type').click();
     cy.get(".ds-dropdown-list-item").contains("Coupe").click();
