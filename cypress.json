@@ -1,5 +1,5 @@
 {
-    "baseUrl": "https:www.otomoto.pl",
+    "baseUrl": "https://www.otomoto.pl",
     "chromeWebSecurity": false,
     "defaultCommandTimeout": 30000,
     "pageLoadTimeout": 45000,
