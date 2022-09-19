@@ -6,7 +6,7 @@ let price = 0;
 
 Given("I access otomoto page", () => {
     cy.visit("//");
-    cy.viewport(1920,1080);
+    cy.viewport(1920, 1080);
     cy.get('#onetrust-accept-btn-handler').click();
 })
 
@@ -37,28 +37,25 @@ Then('I should be presented with the cars that meets the expectations {word} {wo
     cy.get("[data-testid='listing-ad']").then(($cars) => {
         carsCount = Cypress.$($cars).length;
         cy.log(carsCount);
-    }).then(() => {
-        cy.get(".ooa-x3g7qd-Text").invoke('text').then((text1) => {
-            number = parseInt(text1.toString().replace(/\D/g, ''), 10);
-            cy.log(number);
-            cy.get('body').then($body => {
-                if ($body.find('[data-testid="pagination-list"]').length) {
-                    cy.get('[data-testid="pagination-list"]').should('contain', Math.ceil(number / carsCount));
-                }
-                else {
-                    expect(carsCount).to.eq(number);
-                }
-            }).then(() => {
-                cy.get("[data-testid='listing-ad']").each(($el, index, list) => {
-                    cy.wrap($el).should('contain', marka);
-                }).then(() => {
-                    cy.get("[data-testid='listing-ad'] .e1b25f6f8").each(($el, index, list) => {
-                        cy.wrap($el).invoke('text').then((text2) => {
-                            price = parseInt(text2.toString().replace(/\D/g, ''), 10);
-                            expect(price).to.not.be.greaterThan(parseInt(max, 10));
-                        })
-                    })
-                })
+    })
+    cy.get(".ooa-x3g7qd-Text").invoke('text').then((text1) => {
+        number = parseInt(text1.toString().replace(/\D/g, ''), 10);
+        cy.log(number);
+        cy.get('body').then($body => {
+            if ($body.find('[data-testid="pagination-list"]').length) {
+                cy.get('[data-testid="pagination-list"]').should('contain', Math.ceil(number / carsCount));
+            }
+            else {
+                expect(carsCount).to.eq(number);
+            }
+        })
+        cy.get("[data-testid='listing-ad']").each(($el, index, list) => {
+            cy.wrap($el).should('contain', marka);
+        })
+        cy.get("[data-testid='listing-ad'] .e1b25f6f8").each(($el, index, list) => {
+            cy.wrap($el).invoke('text').then((text2) => {
+                price = parseInt(text2.toString().replace(/\D/g, ''), 10);
+                expect(price).to.not.be.greaterThan(parseInt(max, 10));
             })
         })
     })
