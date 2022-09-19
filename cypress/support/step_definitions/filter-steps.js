@@ -30,9 +30,9 @@ When("I click on pokaz button", () => {
 })
 
 Then('I should be presented with the cars that meets the expectations {word} {word} {word}', (nadwozie, marka, max) => {
-    cy.get('.e1o38nex0.ooa-18rmvys > div > div:nth-of-type(1)  button > .ooa-1i4x8r5').should('have.value', nadwozie);
-    cy.get(".ooa-10imx6s").invoke('attr', 'placeholder').should('contain', marka)
-    cy.get("div:nth-of-type(5) > div > div:nth-of-type(2) input[role='combobox']").invoke('attr', 'value').should('contain', numberWithSpaces(max));
+    cy.get("[class='ooa-17z33ro'] [type='text']").should('have.value', nadwozie);
+    cy.get("[class='ooa-1obpyoo'][type='text']").invoke('attr', 'placeholder').should('contain', marka);
+    cy.get("div:nth-of-type(5) > div > div:nth-of-type(2) input[role='combobox']").invoke('attr', 'value').should('contain', addSpacesInNumber(max));
 
     cy.get("[data-testid='listing-ad']").then(($cars) => {
         carsCount = Cypress.$($cars).length;
@@ -64,6 +64,4 @@ Then('I should be presented with the cars that meets the expectations {word} {wo
     })
 })
 
-function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-}
+const addSpacesInNumber = (number) => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
