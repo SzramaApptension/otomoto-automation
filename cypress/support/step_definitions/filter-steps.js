@@ -10,7 +10,7 @@ Given("I access otomoto page", () => {
     cy.get('#onetrust-accept-btn-handler').click();
 })
 
-When("I select typ nadwozia {word}", (nadwozie) => {
+And("I select typ nadwozia {word}", (nadwozie) => {
     cy.get('#filter_enum_body_type').type(nadwozie).type('{enter}');
     cy.get('.ds-select-clear-icon').should('have.length', 1);
 })
@@ -25,7 +25,7 @@ And("I select max_price {word}", (max) => {
     cy.get('.ds-select-clear-icon').should('have.length', 3);
 })
 
-And("I click on pokaz button", () => {
+When("I click on pokaz button", () => {
     cy.get('[data-testid="submit-btn"]').click();
 })
 

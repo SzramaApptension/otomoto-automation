@@ -2,10 +2,10 @@ Feature: Otomoto filtering
 
     Scenario Outline: Filter cars
         Given I access otomoto page
-        When I select typ nadwozia <nadwozie>
+        And I select typ nadwozia <nadwozie>
         And I select marka pojazdu <marka>
         And I select max_price <max>
-        And I click on pokaz button
+        When I click on pokaz button
         Then I should be presented with the cars that meets the expectations <nadwozie> <marka> <max>
 
         Examples:
