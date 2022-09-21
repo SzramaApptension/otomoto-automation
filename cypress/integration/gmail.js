@@ -13,7 +13,7 @@ describe('Create account on Otomoto', () => {
         cy.visit('https://gmail.com')
         cy.get("#identifierId").type("jacek.tester1@gmail.com");
         cy.get('#identifierNext').click();
-        cy.get('#password').type(data.EmailPass);
+        cy.get('#password').type(data.emailPass);
         cy.get('#passwordNext').click();
     })
   })

@@ -25,9 +25,9 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 
-Cypress.Commands.add('loginToOtomoto', (mail, pw) => {
+Cypress.Commands.add('loginToOtomoto', (mail, password) => {
     cy.get('[data-testid="usermenu-link-login"]').click();
     cy.get('[data-testid="current-email"]').type(mail);
-    cy.get('[data-testid="current-password"]').type(pw);
+    cy.get('[data-testid="current-password"]').type(password);
     cy.get('[data-testid="sign-in-button"]').click();
   })
