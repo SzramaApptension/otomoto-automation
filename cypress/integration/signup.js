@@ -7,9 +7,10 @@ describe('Create account on Otomoto', () => {
   let randomString = Math.random().toString(36).substring(2);
   const email = "jacek.tester1+" + randomString + "@gmail.com";
   const existingAccLogin = 'jacek.tester1@gmail.com';
+  let emailUsername = existingAccLogin.substring(0, existingAccLogin.indexOf("@"));
 
-  before(function(){
-    cy.fixture('example').then(function(data){
+  before(function () {
+    cy.fixture('example').then(function (data) {
       globalThis.data = data;
     })
   })
@@ -29,11 +30,13 @@ describe('Create account on Otomoto', () => {
   })
 
   it('Login', () => {
-    cy.LoginToOtomoto(existingAccLogin, data.OtoPass);
+    cy.loginToOtomoto(existingAccLogin, data.OtoPass);
+    cy.get('[data-test="link-account"] > .text').should('contain', emailUsername);
   })
 
-  it.only('Change password', () => {
-    cy.LoginToOtomoto(existingAccLogin, data.OtoPass);
+  it('Change password', () => {
+    cy.loginToOtomoto(existingAccLogin, data.OtoPass);
+    cy.get('[data-test="link-account"] > .text').should('contain', emailUsername);
     cy.get('#se_accountShop').click();
     cy.get('.password > .tile-header').click();
     cy.get('[data-test="input-old-password"]').type(data.OtoPass);
@@ -41,23 +44,19 @@ describe('Create account on Otomoto', () => {
     cy.get('[data-test="input-confirm-password"]').type(data.newPass);
     cy.get(':nth-child(4) > [data-test="change-password"]').click();
     cy.get('.om-confirm-inner > :nth-child(1)').should('contain', "zostało zmienione");
-    cy.get('[data-test="logout-button"]').click({force: true});
-    cy.LoginFail(existingAccLogin, data.OtoPass);
-    cy.LoginToOtomoto(existingAccLogin, data.newPass).then(() => {
-      
-      cy.readFile("cypress/fixtures/example.json", (err, data) => {
-        if (err) {
-            return console.error(err);
-        };
-    }).then((data) => {
-      data.buff = data.OtoPass;
-      data.OtoPass = data.newPass;
-      data.newPass = data.buff;
-        cy.writeFile("cypress/fixtures/example.json", JSON.stringify(data))
-    })
-      
-
+    cy.get('[data-test="logout-button"]').click({ force: true });
+    cy.loginToOtomoto(existingAccLogin, data.OtoPass);
+    cy.get('[data-testid="generic-error-message"]').should('contain', "Nieprawidłowy");
+    cy.loginToOtomoto(existingAccLogin, data.newPass)
+    cy.get('[data-test="link-account"] > .text').should('contain', emailUsername);
+    cy.readFile("cypress/fixtures/example.json").then((data) => {
+      let { OtoPass, newPass } = data;
+      let buff = OtoPass;
+      OtoPass = newPass;
+      newPass = buff;
+      data.OtoPass = OtoPass;
+      data.newPass = newPass;
+      cy.writeFile("cypress/fixtures/example.json", JSON.stringify(data));
     })
   })
-  
 })
