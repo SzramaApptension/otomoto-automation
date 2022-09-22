@@ -4,7 +4,8 @@
   "description": "Automation for otomoto.pl",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "triggerAllTests": "npx cypress run --headless"
   },
   "author": "Rafal Szrama",
   "license": "ISC",

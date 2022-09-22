@@ -24,19 +24,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-
-Cypress.Commands.add('LoginToOtomoto', (mail, pw) => {
-    cy.get('[data-testid="usermenu-link-login"]').click();
-    cy.get('[data-testid="current-email"]').type(mail);
-    cy.get('[data-testid="current-password"]').type(pw);
-    cy.get('[data-testid="sign-in-button"]').click();
-    cy.get('[data-test="link-account"] > .text').should('contain', mail.substring(0,12));
-  })
-
-  Cypress.Commands.add('LoginFail', (mail, pw) => {
-    cy.get('[data-testid="usermenu-link-login"]').click();
-    cy.get('[data-testid="current-email"]').type(mail);
-    cy.get('[data-testid="current-password"]').type(pw);
-    cy.get('[data-testid="sign-in-button"]').click();
-    cy.get('[data-testid="generic-error-message"]').should('contain', "Nieprawidłowy");
-  })
+Cypress.Commands.add("loginToOtomoto", (mail, password) => {
+  cy.get('[data-testid="usermenu-link-login"]').click();
+  cy.get('[data-testid="current-email"]').type(mail);
+  cy.get('[data-testid="current-password"]').type(password);
+  cy.get('[data-testid="sign-in-button"]').click();
+});
