@@ -1,7 +1,7 @@
 {
-    "baseUrl": "https://www.otomoto.pl",
-    "chromeWebSecurity": false,
-    "defaultCommandTimeout": 30000,
-    "pageLoadTimeout": 45000,
-    "experimentalStudio": true
-  }
+  "baseUrl": "https://www.otomoto.pl",
+  "chromeWebSecurity": false,
+  "defaultCommandTimeout": 30000,
+  "pageLoadTimeout": 45000,
+  "experimentalStudio": true
+}
