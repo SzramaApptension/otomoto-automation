@@ -9,7 +9,7 @@ describe("Validate if followed offers appears in dedicated page", () => {
     cy.get("#onetrust-accept-btn-handler").click();
   });
 
-  it("Follow the offer", () => {
+  it("Follow the offer", { pageLoadTimeout: 60000 }, () => {
     cy.get('[data-testid="ad-image"]').click();
     cy.get(".offer-summary > .offer-title").then(($name) => {
       carName = Cypress.$($name).text();

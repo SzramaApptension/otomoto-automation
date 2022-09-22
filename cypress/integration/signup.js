@@ -24,13 +24,13 @@ describe("Create account on Otomoto", () => {
   it("Validate signup", () => {
     cy.get('[data-testid="usermenu-link-signup"]').click();
     cy.get('[data-testid="new-email"]').type(email);
-    cy.get('[data-testid="new-password"]').type(data.OtoPass);
+    cy.get('[data-testid="new-password"]').type(data.otoPass);
     cy.get('[data-testid="sign-up-button"]').click();
     cy.get(".ooa-r3slao-Text").should("contain", "Zweryfikuj");
   });
 
   it("Login", () => {
-    cy.loginToOtomoto(existingAccLogin, data.OtoPass);
+    cy.loginToOtomoto(existingAccLogin, data.otoPass);
     cy.get('[data-test="link-account"] > .text').should(
       "contain",
       emailUsername
@@ -38,14 +38,14 @@ describe("Create account on Otomoto", () => {
   });
 
   it("Change password", () => {
-    cy.loginToOtomoto(existingAccLogin, data.OtoPass);
+    cy.loginToOtomoto(existingAccLogin, data.otoPass);
     cy.get('[data-test="link-account"] > .text').should(
       "contain",
       emailUsername
     );
     cy.get("#se_accountShop").click();
     cy.get(".password > .tile-header").click();
-    cy.get('[data-test="input-old-password"]').type(data.OtoPass);
+    cy.get('[data-test="input-old-password"]').type(data.otoPass);
     cy.get('[data-test="input-password"]').type(data.newPass);
     cy.get('[data-test="input-confirm-password"]').type(data.newPass);
     cy.get(':nth-child(4) > [data-test="change-password"]').click();
@@ -54,7 +54,7 @@ describe("Create account on Otomoto", () => {
       "zostało zmienione"
     );
     cy.get('[data-test="logout-button"]').click({ force: true });
-    cy.loginToOtomoto(existingAccLogin, data.OtoPass);
+    cy.loginToOtomoto(existingAccLogin, data.otoPass);
     cy.get('[data-testid="generic-error-message"]').should(
       "contain",
       "Nieprawidłowy"
@@ -65,11 +65,11 @@ describe("Create account on Otomoto", () => {
       emailUsername
     );
     cy.readFile("cypress/fixtures/example.json").then((data) => {
-      let { OtoPass, newPass } = data;
-      let buff = OtoPass;
-      OtoPass = newPass;
+      let { otoPass, newPass } = data;
+      let buff = otoPass;
+      otoPass = newPass;
       newPass = buff;
-      data.OtoPass = OtoPass;
+      data.otoPass = otoPass;
       data.newPass = newPass;
       cy.writeFile("cypress/fixtures/example.json", JSON.stringify(data));
     });
